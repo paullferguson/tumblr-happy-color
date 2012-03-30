@@ -32,334 +32,723 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 	<!-- theme options -->
 	<meta name="font:Body" content="" />
 
-	<meta name="color:Title" content="#259096"/>
-	<meta name="color:Link" content="#6CA516"/>
+	<meta name="color:Title" content="#302302"/>
+	<meta name="color:Link" content="#262725"/>
 	<meta name="color:Accent" content="#ffffff"/>
-	<meta name="color:Accent Background" content="#777777"/>
+	<meta name="color:Background" content="#e2dcdc"/>
 
 	<meta name="image:Logo" content="" />
 
-	<meta name="if:Show Likes" content="0" />
-	<meta name="if:Show Social Network Icons" content="0" />
-	<meta name="if:Share Buttons" content="1" />
+	<meta name="if:Show Social Network Icons" content="1" />
+	<meta name="if:Share Post Buttons" content="1" />
+	<meta name="if:Show Tags" content="1" />
 
-	<meta name="text:Twitter Username" content="" />
-	<meta name="text:Twitter URL" content="" />
-	<meta name="text:Facebook URL" content="" />
-	<meta name="text:Flickr URL" content="" />
-	<meta name="text:Google+ URL" content="" />
-	<meta name="text:Lastfm URL" content="" />
-	<meta name="text:LinkedIn URL" content="" />
-	<meta name="text:Pinterest URL" content="" />
-	<meta name="text:SoundCloud URL" content="" />
-	<meta name="text:Vimeo URL" content="" />
-	<meta name="text:YouTube URL" content="" />
-	<meta name="text:Disqus shortname" content="">
-	<meta name="text:Google Analytics ID" content="">
+	<meta name="text:Twitter Username" content="MutinyP" />
+	<meta name="text:Twitter URL" content="http://www.example.com" />
+	<meta name="text:Facebook URL" content="http://www.example.com" />
+	<meta name="text:Flickr URL" content="http://www.example.com" />
+	<meta name="text:GooglePlus URL" content="http://www.example.com" />
+	<meta name="text:Lastfm URL" content="http://www.example.com" />
+	<meta name="text:LinkedIn URL" content="http://www.example.com" />
+	<meta name="text:Pinterest URL" content="http://www.example.com" />
+	<meta name="text:SoundCloud URL" content="http://www.example.com" />
+	<meta name="text:Vimeo URL" content="http://www.example.com" />
+	<meta name="text:YouTube URL" content="http://www.example.com" />
+	<meta name="text:Disqus shortname" content="http://www.example.com">
+	<meta name="text:Google Analytics ID" content="123456AB">
 	
 	<!-- styles -->
 	<style>
 		/* reset and normalize styles */
 		@import url('http://static.tumblr.com/usxpiyc/i6Hm1baz1/basic-normalise.css');
-		
+
+		body {
+			background-color: {color:Background};
+			font-family: '{font:Body}' , serif;
+		}
+		h1 a { color: {color:Title}; }
+		a { color: {color:Link}; }
+		.social-networks-list {background: {color: Accent}; }
+
 		/* don't forget to let people mess up the theme with their own styles */
 		{CustomCSS}
 	</style>
-	<link rel="stylesheet" type="text/css" href="http://www.paul-ferguson.co.uk/dump/tumblr-style.css" />
+<!-- 	<link rel="stylesheet" type="text/css" href="http://www.paul-ferguson.co.uk/dump/tumblr-style.css" /> -->
 
 	<!-- all the JS is at the bottom of the page except for Modernizr -->
 	<script src="http://static.tumblr.com/usxpiyc/1Ycm1bay3/modernizer.custom.2.5.3.js"></script>
 </head>
 
 <body>
-
-	<header role="banner">
-
-		<h1 title="{Title}"><a href="/">{Title}</a></h1>
-		
-		{block:IfLogoImage}
-			<a class="logo" href="/" title="{Title}">
-				<img alt="{Title}" src="{image:Logo}" />
-			</a>
-		{/block:IfLogoImage}
-
-		{block:Description}
-			<p class="description">{Description}</p>
-		{/block:Description}
-
-		<nav role="navigation">
-			<ul>
-				{block:HasPages}
-					{block:Pages}
-						<li><a href="{URL}">{Label}</a></li>
-					{/block:Pages}
-				{/block:HasPages}
-				<li><a href="/archive">{lang:Archive}</a></li>
-				{block:AskEnabled}
-					<li><a href="/ask">{AskLabel}</a></li>
-				{/block:AskEnabled}
-				{block:SubmissionsEnabled}
-					<li><a href="/submit">{SubmitLabel}</a></li>
-				{/block:SubmissionsEnabled}
-			</ul>
-		</nav>
-
-		<div class="social" id="tumblr-search">
-		{block:IfShowSocialNetworkIcons}
-			<ul class="networks clear">
-				{block:IfFacebookUrl}
-					<li class="service facebook">
-						<a class="icon bP" href="{text:Facebook URL}" target="_blank" title="Facebook">Facebook</a>
-					</li>
-				{/block:IfFacebookUrl}
-				{block:IfFlickrUrl}
-					<li class="service flickr">
-						<a class="icon bP" href="{text:Flickr URL}" target="_blank" title="Flickr">Flickr</a>
-					</li>
-				{/block:IfFlickrUrl}
-				{block:IfLastfmUrl}
-					<li class="service lastfm">
-						<a class="icon bP" href="{text:LastFm URL}" target="_blank" title="LastFm">LastFm</a>
-					</li>
-				{/block:IfLastfmUrl}
-				{block:IfGoogle+Url}
-					<li class="service googleplus">
-						<a class="icon bP" href="{text:GooglePlus URL}" target="_blank" title="Google+">Google+</a>
-					</li>
-				{/block:IfGoogle+Url}
-				{block:IfLinkedInUrl}
-					<li class="service linkedin">
-						<a class="icon bP" href="{text:LinkedIn URL}" target="_blank" title="LinkedIn">LinkedIn</a>
-					</li>
-				{/block:IfLinkedInUrl}
-				{block:IfPinterestUrl}
-					<li class="service pinterest">
-						<a class="icon bP" href="{text:Pinterest URL}" target="_blank" title="Pinterest">Pinterest</a>
-					</li>
-				{/block:IfPinterestUrl}
-				{block:IfSoundCloudUrl}
-					<li class="service soundcloud">
-						<a class="icon bP" href="{text:SoundCloud URL}" target="_blank" title="SoundCloud">SoundCloud</a>
-					</li>
-				{/block:IfSoundCloudUrl}
-				{block:IfTwitterUrl}
-					<li class="service twitter">
-						<a class="icon bP" href="{text:Twitter URL}" target="_blank" title="Twitter">Twitter</a>
-					</li>
-				{/block:IfTwitterUrl}
-				{block:IfVimeoUrl}
-					<li class="service vimeo">
-						<a class="icon bP" href="{text:Vimeo URL}" target="_blank" title="Vimeo">Vimeo</a>
-					</li>
-				{/block:IfVimeoUrl}
-				{block:IfYouTubeUrl}
-					<li class="service youtube">
-						<a class="icon bP" href="{text:YouTube URL}" target="_blank" title="YouTube">YouTube</a>
-					</li>
-				{/block:IfYouTubeUrl}
-			</ul>
-    		{/block:IfShowSocialNetworkIcons}
-		</div>
-
-	</header><!-- /header -->
+	<div id="page">
+		<header role="banner">
 	
-	<div id="main" role="main">
-		<article>
-
-		{block:SearchPage}
-			<div class="page-title">
-				<h1>{block:NoSearchResults}Sorry, there are no {/block:NoSearchResults}Search results containing "{SearchQuery}"</h1>
-			</div>
-		{/block:SearchPage}
-	
-		{block:TagPage}
-			<div class="page-title">
-				<h1>Posts tagged "{Tag}"</h1>
-			</div>
-		{/block:TagPage}
-
-		{block:Posts}
+			<hgroup>
+				<h1 title="{Title}"><a href="/">{Title}</a></h1>
 				
+			{block:IfLogoImage}
+				<a class="logo" href="/" title="{Title}">
+					<img alt="{Title}" src="{image:Logo}" />
+				</a>
+			{/block:IfLogoImage}
+	
+			{block:Description}
+				<h3 class="description">{Description}</h3>
+			{/block:Description}
+			</hgroup>
+			
+			<nav role="navigation">
+				<ul>
+					{block:HasPages}
+						{block:Pages}
+						<li><a href="{URL}">{Label}</a></li>
+						{/block:Pages}
+					{/block:HasPages}
+						<li><a href="/archive">{lang:Archive}</a></li>
+					{block:AskEnabled}
+						<li><a href="/ask">{AskLabel}</a></li>
+					{/block:AskEnabled}
+					{block:SubmissionsEnabled}
+						<li><a href="/submit">{SubmitLabel}</a></li>
+					{/block:SubmissionsEnabled}
+				</ul>
+			</nav>
+	
+			{block:IfShowSocialNetworkIcons}
+			<div id="social-network-block">
+				<ul class="social-networks-list clear">
+					{block:IfFacebookUrl}
+						<li class="social-network-facebook">
+							<a class="icon" href="{text:Facebook URL}" target="_blank" title="Facebook">Facebook</a>
+						</li>
+					{/block:IfFacebookUrl}
+					{block:IfFlickrUrl}
+						<li class="social-network-flickr">
+							<a class="icon" href="{text:Flickr URL}" target="_blank" title="Flickr">Flickr</a>
+						</li>
+					{/block:IfFlickrUrl}
+					{block:IfLastfmUrl}
+						<li class="social-network-lastfm">
+							<a class="icon" href="{text:LastFm URL}" target="_blank" title="LastFm">LastFm</a>
+						</li>
+					{/block:IfLastfmUrl}
+					{block:IfGooglePlusUrl}
+						<li class="social-network-googleplus">
+							<a class="icon" href="{text:GooglePlus URL}" target="_blank" title="Google+">Google+</a>
+						</li>
+					{/block:IfGooglePlusUrl}
+					{block:IfLinkedInUrl}
+						<li class="social-network-linkedin">
+							<a class="icon" href="{text:LinkedIn URL}" target="_blank" title="LinkedIn">LinkedIn</a>
+						</li>
+					{/block:IfLinkedInUrl}
+					{block:IfPinterestUrl}
+						<li class="social-network-pinterest">
+							<a class="icon" href="{text:Pinterest URL}" target="_blank" title="Pinterest">Pinterest</a>
+						</li>
+					{/block:IfPinterestUrl}
+					{block:IfSoundCloudUrl}
+						<li class="social-network-soundcloud">
+							<a class="icon" href="{text:SoundCloud URL}" target="_blank" title="SoundCloud">SoundCloud</a>
+						</li>
+					{/block:IfSoundCloudUrl}
+					{block:IfTwitterUrl}
+						<li class="social-network-twitter">
+							<a class="icon" href="{text:Twitter URL}" target="_blank" title="Twitter">Twitter</a>
+						</li>
+					{/block:IfTwitterUrl}
+					{block:IfVimeoUrl}
+						<li class="social-network-vimeo">
+							<a class="icon" href="{text:Vimeo URL}" target="_blank" title="Vimeo">Vimeo</a>
+						</li>
+					{/block:IfVimeoUrl}
+					{block:IfYouTubeUrl}
+						<li class="service youtube">
+							<a class="icon" href="{text:YouTube URL}" target="_blank" title="YouTube">YouTube</a>
+						</li>
+					{/block:IfYouTubeUrl}
+				</ul>
+			</div>
+	  		{/block:IfShowSocialNetworkIcons}
+	
+		</header><!-- /header -->
+		
+		<div id="main" role="main">
+	
+			{block:TagPage}
+			<article id="tag-page">
+				<div class="page-title">
+					<h1>Posts tagged "{Tag}"</h1>
+				</div>
+			</article>
+			{/block:TagPage}
+	
+		{block:Posts}
+	
 			{block:Text}
-				<div id="post-{PostID}" class="post text {TagsAsClasses}">
-					{block:Title}
-						<header>
-							<h1><a href="{Permalink}">{Title}</a></h1>
-						</header>
-					{/block:Title}
-					{Body}
-				</div>
-			{/block:Text}
+			<article id="post-{PostID}" class="post text {TagsAsClasses}">
+				{block:Title}
+				<header>
+					<h1><a href="{Permalink}">{Title}</a></h1>
+				</header>
+				{/block:Title}
+				{Body}
 	
-			{block:Answer}
-				<div id="post-{PostID}" class="post answer {TagsAsClasses}">
-					<h2>{lang:Asker asked}</h2>
-					<blockquote>{Question}</blockquote>
-					{Answer}
-				</div>
-			{/block:Answer}
-			
-			{block:Photo}
-				<div id="post-{PostID}" class="post photo {TagsAsClasses}">
-					{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}">{LinkCloseTag}
-					{block:Caption}
-						{Caption}
-					{/block:Caption}
-					{block:HighRes}
-						<p><a href="{PhotoURL-HighRes}">View in high-resolution</a></p>
-					{/block:HighRes}
-					{block:Exif}
-						<ul>
-							{block:Camera}
-								<li>Camera: {Camera}</li>
-							{/block:Camera}
-							{block:Aperture}
-								<li>Aperture: {Aperture}</li>
-							{/block:Aperture}
-							{block:Exposure}
-								<li>Exposure: {Exposure}</li>
-							{/block:Exposure}
-							{block:FocalLength}
-								<li>Focal Length: {FocalLength}</li>
-							{/block:FocalLength}
-						</ul>
-					{/block:Exif}
-				</div>
-			{/block:Photo}
-			
-			{block:Photoset}
-				<div id="post-{PostID}" class="post photoset {TagsAsClasses}">
-					{Photoset-500}
-					{block:Caption}
-						{Caption}
-					{/block:Caption}
-				</div>
-			{/block:Photoset}
-	
-			{block:Video}
-				<div id="post-{PostID}" class="post video {TagsAsClasses}">
-					{Video-500}
-					{block:Caption}
-						{Caption}
-					{/block:Caption}
-				</div>
-			{/block:Video}
-	
-			{block:Audio}
-				<div id="post-{PostID}" class="post audio {TagsAsClasses}">
-					{AudioPlayer}
-					{block:Caption}
-						{Caption}
-					{/block:Caption}
-					<ul>
-						{block:ExternalAudio}
-							<li>
-								<a href="{ExternalAudioURL}">{lang:Download}</a>
-							</li>
-						{/block:ExternalAudio}
-						<li>{PlayCountWithLabel}</li>
-						{block:Artist}
-							<li>Artist: {Artist}</li>
-						{/block:Artist}
-						{block:Album}
-							<li>Album: {Album}</li>
-						{/block:Album}
-						{block:TrackName}
-							<li>Track: {TrackName}</li>
-						{/block:TrackName}
-					</ul>
-				</div>
-			{/block:Audio}
-	
-			{block:Quote}
-				<div id="post-{PostID}" class="post quote {TagsAsClasses}">
-					<blockquote>{Quote}</blockquote>
-					{block:Source}
-						<p>{Source}</p>
-					{/block:Source}
-				</div>
-			{/block:Quote}
-			
-			{block:Link}
-				<div id="post-{PostID}" class="post link {TagsAsClasses}">
-					<header>
-						<h1><a href="{URL}">{Title}</a></h1>
-					</header>
-					{block:Description}
-						{Description}
-					{/block:Description}
-				</div>
-			{/block:Link}
-			
-			{block:Chat}
-				<div id="post-{PostID}" class="post chat {TagsAsClasses}">
-					{block:Title}
-						<h1><a href="{Permalink}">{Title}</a></h1>
-					{/block:Title}
-					<ul class="chat-list">
-						{block:Lines}
-							<li class="{Alt} user-{UserNumber}">
-								{block:Label}
-									<span>{Label}</span>
-								{/block:Label}
-								{Line}
-							</li>
-						{/block:Lines}
-					</ul>
-				</div>
-			{/block:Chat}
-	
-			{block:Date}
-				{block:ContentSource}
-					<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
-				{/block:ContentSource}
-				{block:RebloggedFrom}
-					<p>{lang:Originally from ReblogRootTitle 2}</p>
-				{/block:RebloggedFrom}
-				<footer>
-					<span class="time-ago">
-						<a href="{Permalink}">{TimeAgo}</a>
-					</span>
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
 					{block:IfDisqusShortname}
-						<span class="comments-link"> // 
+						<span class="comments-link"> | 
 							<a href="{Permalink}#comments">{lang:Comment}</a>
 						</span>
 					{/block:IfDisqusShortname}
 					{block:NoteCount}
-						<span class="note-count"> // 
+						<span class="note-count"> | 
 							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
 						</span>
 					{/block:NoteCount}
-					{block:HasTags}
-						<span class="tags"> // 
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
 							{lang:Tagged}
 							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
 						</span>
-					{/block:HasTags}
-	
-				{block:IfShareButtons}
-					<div class="post-share">
-						<ul class="networks">
-							{block:PermalinkPage}
-								<li class="social-tumblr">
-									<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
 								</li>
-							{/block:PermalinkPage}
-							<li class="social-twitter">
-								<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
-							</li>
-							<li class="service facebook">
-								<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
-							</li>
-						</ul>
-					</div>
-				{/block:IfShareButtons}
-				</footer>
-			{/block:Date}
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Text}
+	
+			{block:Answer}
+			<article id="post-{PostID}" class="post answer {TagsAsClasses}">
+				<h2>{lang:Asker asked}</h2>
+				<blockquote>{Question}</blockquote>
+				{Answer}
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Answer}
+			
+			{block:Photo}
+			<article id="post-{PostID}" class="post photo {TagsAsClasses}">
+				{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}">{LinkCloseTag}
+				{block:Caption}
+					{Caption}
+				{/block:Caption}
+				{block:HighRes}
+				<p><a href="{PhotoURL-HighRes}">View in high-resolution</a></p>
+				{/block:HighRes}
+				{block:Exif}
+				<ul>
+					{block:Camera}
+						<li>Camera: {Camera}</li>
+					{/block:Camera}
+					{block:Aperture}
+						<li>Aperture: {Aperture}</li>
+					{/block:Aperture}
+					{block:Exposure}
+						<li>Exposure: {Exposure}</li>
+					{/block:Exposure}
+					{block:FocalLength}
+						<li>Focal Length: {FocalLength}</li>
+					{/block:FocalLength}
+				</ul>
+				{/block:Exif}
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Photo}
+			
+			{block:Photoset}
+			<article id="post-{PostID}" class="post photoset {TagsAsClasses}">
+				{Photoset-500}
+				{block:Caption}
+					{Caption}
+				{/block:Caption}
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Photoset}
+	
+			{block:Video}
+			<article id="post-{PostID}" class="post video {TagsAsClasses}">
+				{Video-500}
+				{block:Caption}
+					{Caption}
+				{/block:Caption}
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Video}
+	
+			{block:Audio}
+			<article id="post-{PostID}" class="post audio {TagsAsClasses}">
+				{AudioPlayer}
+				{block:Caption}
+					{Caption}
+				{/block:Caption}
+				<ul>
+					{block:ExternalAudio}
+						<li>
+							<a href="{ExternalAudioURL}">{lang:Download}</a>
+						</li>
+					{/block:ExternalAudio}
+					<li>{PlayCountWithLabel}</li>
+					{block:Artist}
+						<li>Artist: {Artist}</li>
+					{/block:Artist}
+					{block:Album}
+						<li>Album: {Album}</li>
+					{/block:Album}
+					{block:TrackName}
+						<li>Track: {TrackName}</li>
+					{/block:TrackName}
+				</ul>
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Audio}
+	
+			{block:Quote}
+			<article id="post-{PostID}" class="post quote {TagsAsClasses}">
+				<blockquote>{Quote}</blockquote>
+				{block:Source}
+					<p>{Source}</p>
+				{/block:Source}
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Quote}
+			
+			{block:Link}
+			<article id="post-{PostID}" class="post link {TagsAsClasses}">
+				<header>
+					<h1><a href="{URL}">{Title}</a></h1>
+				</header>
+				{block:Description}
+					{Description}
+				{/block:Description}
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Link}
+			
+			{block:Chat}
+			<article id="post-{PostID}" class="post chat {TagsAsClasses}">
+				{block:Title}
+				<h1><a href="{Permalink}">{Title}</a></h1>
+				{/block:Title}
+				<ul class="chat-list">
+				{block:Lines}
+					<li class="{Alt} user-{UserNumber}">
+						{block:Label}
+						<span>{Label}</span>
+						{/block:Label}
+						{Line}
+					</li>
+				{/block:Lines}
+				</ul>
+	
+				{block:Date}
+					<footer>
+					{block:ContentSource}
+						<p>{lang:Source}: <a href="{SourceURL}">{SourceTitle}</a></p>
+					{/block:ContentSource}
+					{block:RebloggedFrom}
+						<p>{lang:Originally from ReblogRootTitle 2}</p>
+					{/block:RebloggedFrom}
+						<span class="time-ago">
+							<a href="{Permalink}">{TimeAgo}</a>
+						</span>
+					{block:IfDisqusShortname}
+						<span class="comments-link"> | 
+							<a href="{Permalink}#comments">{lang:Comment}</a>
+						</span>
+					{/block:IfDisqusShortname}
+					{block:NoteCount}
+						<span class="note-count"> | 
+							<a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+						</span>
+					{/block:NoteCount}
+					
+					{block:IfShowTags}{block:HasTags}
+						<span class="tags"> | 
+							{lang:Tagged}
+							{block:Tags} <a href="{TagURL}">{Tag}</a>{/block:Tags}
+						</span>
+					{/block:HasTags}{/block:IfShowTags}
+		
+					{block:IfSharePostButtons}
+						<div class="post-share">
+							<ul class="networks">
+								{block:PermalinkPage}
+									<li class="social-tumblr">
+										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+									</li>
+								{/block:PermalinkPage}
+								<li class="social-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="service facebook">
+									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+								</li>
+							</ul>
+						</div>
+					{/block:IfSharePostButtons}
+					</footer>
+				{/block:Date}
+			</article>
+			{/block:Chat}
 	
 		{/block:Posts}
-		</article>
-
+	
 		{block:IfDisqusShortname}
 			{block:PermalinkPage}
 			<section id="comments">
@@ -386,27 +775,33 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 			</section>
 			{/block:PermalinkPage}
 		{/block:IfDisqusShortname}
-
+	
 		{block:PostNotes}
 			<section id="notes">{PostNotes}</section>
 		{/block:PostNotes}
-
+	
 		{block:Pagination}
 			<nav id="pagination">
 				{block:PreviousPage}
 					<a href="{PreviousPage}">Previous</a>
-					{block:NextPage} // {/block:NextPage}
+					{block:NextPage} | {/block:NextPage}
 				{/block:PreviousPage}
 				{block:NextPage}<a href="{NextPage}">Next</a>{/block:NextPage}
 				<span>{lang:Page CurrentPage of TotalPages}</span>
 			</nav>
 		{/block:Pagination}
-			
-	</div><!-- /#main -->
-	
-	<footer role="contentinfo">
-		Copyright {CopyrightYears} // {lang:Powered by Tumblr 2}
-	</footer><!-- /footer -->
+				
+		</div><!-- /#main -->
+		
+		<footer role="contentinfo">
+			<p>Copyright {CopyrightYears} | {lang:Powered by Tumblr 2}
+				<a href="http://singleatheme.tumblr.com">Single A Theme</a> |
+				<a href="http://singleatheme.tumblr.com/versions">Version 1.1.4</a> |
+				<a href="http://businessbullpen.tumblr.com">By Business Bullpen</a>
+			</p>
+		</footer><!-- /footer -->
+		
+	</div><!-- /#page -->
 	
 	<!-- grab jQuery -->
 	<script src="http://static.tumblr.com/usxpiyc/xCSm1bawm/jquery.1.7.1.js"></script>
