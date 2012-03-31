@@ -1,0 +1,14 @@
+/* style.scss*/
+#page:before, #page:after {
+  content: "";
+  display: table; }
+#page:after {
+  clear: both; }
+#page {
+  zoom: 1; }
+
+header {
+  width: 150px; }
+
+#main {
+  width: 600px; }

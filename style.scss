@@ -1,0 +1,29 @@
+/* style.scss*/
+
+$bg-color : green;
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content:"";
+    display:table;
+  }
+  &:after {
+    clear:both;
+  }
+  & {
+    zoom:1;
+  }
+}
+
+#page {
+	@include clearfix;
+}
+
+header {
+	width: 150px;
+}
+
+#main {
+	width: 600px;
+}
