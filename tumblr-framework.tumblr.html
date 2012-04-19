@@ -73,7 +73,7 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 		/* don't forget to let people mess up the theme with their own styles */
 		{CustomCSS}
 	</style>
-<!-- 	<link rel="stylesheet" type="text/css" href="http://www.paul-ferguson.co.uk/dump/tumblr-style.css" /> -->
+	<link rel="stylesheet" href="http://www.paul-ferguson.co.uk/dump/tumblr-style.css" />
 
 	<!-- all the JS is at the bottom of the page except for Modernizr -->
 	<script src="http://static.tumblr.com/usxpiyc/1Ycm1bay3/modernizer.custom.2.5.3.js"></script>
@@ -624,7 +624,7 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 			{block:Link}
 			<article id="post-{PostID}" class="post link {TagsAsClasses}">
 				<header>
-					<h1><a href="{URL}">{Title}</a></h1>
+					<h1><a href="{URL}" {Target} title="{}">{Name}</a></h1>
 				</header>
 				{block:Description}
 					{Description}
@@ -794,10 +794,9 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 		</div><!-- /#main -->
 		
 		<footer role="contentinfo">
-			<p>Copyright {CopyrightYears} | {lang:Powered by Tumblr 2}
-				<a href="http://singleatheme.tumblr.com">Single A Theme</a> |
-				<a href="http://singleatheme.tumblr.com/versions">Version 1.1.4</a> |
-				<a href="http://businessbullpen.tumblr.com">By Business Bullpen</a>
+			<p>Copyright {CopyrightYears} {lang:Powered by Tumblr 2}
+				<a href="http://paul-ferguson.co.uk/tumblr/">Happy Color</a> V1
+				<a href="http://paul-ferguson.co.uk">By Paul Ferguson</a>
 			</p>
 		</footer><!-- /footer -->
 		
