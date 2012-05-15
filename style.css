@@ -306,9 +306,11 @@ strong, b {
 ------------- */
 .post {
   background: white;
+  position: relative;
   background: rgba(255, 255, 255, 0.7);
   padding: 2.3375em 2em 0;
   margin-bottom: 1.5em;
+  clear: both;
   border: 1px solid rgba(255, 255, 255, 0.7);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -353,6 +355,51 @@ blockquote {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   position: relative; }
 
+/* Video Post */
+.video .fluid-width-video-wrapper {
+  margin-bottom: 2.3375em; }
+
+/* Post Footer */
+footer {
+  margin-top: 1.782em;
+  background: gray;
+  width: 104%;
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  padding: 0 2.3375em; }
+
+.networks {
+  padding-left: 0; }
+  .networks:before, .networks:after {
+    content: "";
+    display: table; }
+  .networks:after {
+    clear: both; }
+  .networks {
+    zoom: 1; }
+  .networks li {
+    list-style-type: none;
+    float: left;
+    margin-left: 6px;
+    position: relative; }
+    .networks li:first-child {
+      margin-left: 0; }
+
+.share-facebook iframe {
+  position: absolute;
+  left: 0;
+  top: 0; }
+
+.share-tumblr a.tumblr-button {
+  display: inline-block;
+  text-indent: -9999px;
+  overflow: hidden;
+  border-bottom: 0;
+  width: 62px;
+  height: 20px;
+  background: transparent url("http://platform.tumblr.com/v1/share_2T.png") top left no-repeat; }
+
 blockquote:after,
 blockquote:before {
   content: "";
@@ -377,6 +424,11 @@ blockquote:before {
 .post.text blockquote,
 .post.audio blockquote {
   margin-top: 26px; }
+
+/* Post Footer and Share buttons */
+.connect_widget_not_connected_text {
+  display: none !important;
+  /* hide the FB counter, feel free to remove */ }
 
 /* 7| Media
 ----------- */

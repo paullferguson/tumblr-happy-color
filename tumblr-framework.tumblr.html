@@ -8,7 +8,7 @@
 <!-- By Paul Ferguson, with canvas by Aron Carol - paul-ferguson.co.uk
 Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tumblr-framework -->
 
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
 	
 	<!-- force latest IE rendering engin & Chrome Frame -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,6 +16,14 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 	<!-- tumblog title and post title on permalink pages -->
 	<title>{block:SearchPage}Searched "{SearchQuery}" | {/block:SearchPage}{block:PostSummary}{PostSummary} | {/block:PostSummary}{Title}</title>
 	
+{block:PermalinkPage}
+	<meta property="og:title" content="{block:PostSummary}{PostSummary} | {/block:PostSummary}" />
+	<meta property="og:type" content="blog" />
+	<meta property="og:url" content="{URLEncodedPermalink}" />
+	<meta property="og:site_name" content="{Title}" />
+	<meta property="fb:admins" content="286302431" />
+{/block:PermalinkPage}
+
 	<!-- favicon & apple touch icon -->
 	<link rel="shortcut icon" href="{Favicon}">
 	<link rel="apple-touch-icon" href="{PortraitURL-128}">
@@ -30,7 +38,7 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 	{/block:Description}
 	
 	<!-- theme options -->
-	<meta name="font:Body" content="" />
+	<meta name="font:Copy Font" content="" />
 
 	<meta name="color:Title" content="#302302"/>
 	<meta name="color:Link" content="#262725"/>
@@ -64,7 +72,7 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 
 		body {
 			background-color: {color:Background};
-			font-family: '{font:Body}' , serif;
+			font-family: '{font:Copy Font}' , serif;
 		}
 		h1 a { color: {color:Title}; }
 		a { color: {color:Link}; }
@@ -73,7 +81,8 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 		/* don't forget to let people mess up the theme with their own styles */
 		{CustomCSS}
 	</style>
-	<link rel="stylesheet" href="http://www.paul-ferguson.co.uk/dump/tumblr-style.css" />
+    <!-- <link rel="stylesheet" href="http://www.paul-ferguson.co.uk/dump/tumblr-style.css" /> -->
+    <link rel="stylesheet" href="style.css" />
 
 	<!-- all the JS is at the bottom of the page except for Modernizr -->
 	<script src="http://static.tumblr.com/usxpiyc/1Ycm1bay3/modernizer.custom.2.5.3.js"></script>
@@ -93,7 +102,7 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 			{/block:IfLogoImage}
 	
 			{block:Description}
-				<h3 class="description">{Description}</h3>
+				<h2 class="description">{Description}</h2>
 			{/block:Description}
 			</hgroup>
 			
@@ -175,13 +184,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 		
 		<div id="main" role="main">
 	
-			{block:TagPage}
+		{block:TagPage}
 			<article id="tag-page">
 				<div class="page-title">
 					<h1>Posts tagged "{Tag}"</h1>
 				</div>
 			</article>
-			{/block:TagPage}
+		{/block:TagPage}
 	
 		{block:Posts}
 	
@@ -225,15 +234,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}"{/block:IndexPage} data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -281,15 +288,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -357,15 +362,16 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-pinterest">
+									<a href="http://pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-HighRes}&description={block:Title}{PlaintextTitle}{/block:Title}" class="pin-it-button" count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+								</li>
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -414,15 +420,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -471,15 +475,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -545,15 +547,16 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-pinterest">
+									<a href="http://pinterest.com/pin/create/button/?url={Permalink}&media={block:AlbumArt}{AlbumArtURL}{/block:AlbumArt}&description={block:Title}{PlaintextTitle}{/block:Title}" class="pin-it-button" count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+								</li>
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:TrackName}{PlaintextTrackName}{/block:TrackName} by {block:Artist}{PlaintextArtist}{/block:Artist}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -568,7 +571,7 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 			<article id="post-{PostID}" class="post quote {TagsAsClasses}">
 				<blockquote>{Quote}</blockquote>
 				{block:Source}
-					<p>{Source}</p>
+					<p class="quote-source">{Source}</p>
 				{/block:Source}
 	
 				{block:Date}
@@ -602,15 +605,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="Quoting {block:Source}{PlaintextSource}{/block:Source}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -661,15 +662,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}" data-url="{block:Link}{URL}{/block:Link}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -728,15 +727,13 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 					{block:IfSharePostButtons}
 						<div class="post-share">
 							<ul class="networks">
-								{block:PermalinkPage}
-									<li class="social-tumblr">
-										<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-									</li>
-								{/block:PermalinkPage}
-								<li class="social-twitter">
-									<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}">Tweet</a>
+								<li class="share-tumblr">
+									<a href="http://www.tumblr.com/share" title="Share on Tumblr" class="tumblr-button">Share on Tumblr</a>
 								</li>
-								<li class="service facebook">
+								<li class="share-twitter">
+									<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-text="{block:Title}{PlaintextTitle}{/block:Title}" data-url="{Permalink}">Tweet</a>
+								</li>
+								<li class="share-facebook">
 									<iframe src="http://www.facebook.com/plugins/like.php?href={URLEncodedPermalink}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 								</li>
 							</ul>
@@ -802,13 +799,15 @@ Based on the Tumblr Framework by Galengidman - https://github.com/galengidman/tu
 		
 	</div><!-- /#page -->
 	
-	<!-- grab jQuery -->
 	<script src="http://static.tumblr.com/usxpiyc/xCSm1bawm/jquery.1.7.1.js"></script>
-	
-	<!-- any custom scripts go here -->
-	<script>
+	<script src="http://static.tumblr.com/usxpiyc/KGxm2r7k3/jquery.fitvids.js"></script>
+    <script src="http://static.tumblr.com/usxpiyc/iW5m418l1/pinterest.js"></script>
+
+    <script>
+    	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://static.tumblr.com/usxpiyc/mu6m345yi/twitter-button.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
 		$(document).ready(function() {
-			// your functions go here
+			$(".video").fitVids();
 		});
 	</script>
 
